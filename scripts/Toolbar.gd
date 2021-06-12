@@ -2,27 +2,17 @@ extends Node2D
 
 const Cube = preload("res://scenes/Cube.tscn")
 
-var shapes = {
-	"square": 5,
-	"circle": 0,
-	"triangle": 0,
-	"star": 0
-}
-
-var colors = [
-	'e82222',
-	'261bed',
-	'29b719',
-	'b719d3'
-]
 
 func _ready():
+	# Use this to create real randomness
+	Globals.colors.sort()
+	randomize()
 	var last_y = 0
-	for shape in shapes:
-		var num = int(shapes[shape])
+	for shape in Globals.shapes:
+		var num = Globals.shapes[shape]
 		for i in range(0, num):
 			var cube = Cube.instance()
-			cube.color = colors[randi() % colors.size()]
+			cube.color = Globals.colors[randi() % Globals.colors.size()]
 			cube.position.y = last_y * cube.tile_size
 			last_y += 1
 			

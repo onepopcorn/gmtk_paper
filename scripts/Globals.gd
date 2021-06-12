@@ -9,3 +9,10 @@ var colors = [
 	'29b719',
 	'b719d3'
 ]
+
+var shapes = {
+	"square": 3,
+	"circle": 1,
+	"triangle": 1,
+	"star": 2
+}
