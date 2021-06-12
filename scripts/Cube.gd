@@ -20,7 +20,7 @@ onready var player = get_node("AnimationPlayer")
 onready var sprite = get_node("Sprite")
 
 func _ready():
-	snapToGrid()
+	position = getSnappedPosition(position)
 	
 	# Play square animation and prevent all cubes have the same animation (starting from a random frame)
 	player.play("Square")
@@ -65,9 +65,8 @@ func drop():
 	dragging = false
 	get_node("/root/Main/DropZone").modulate = Color(0,0,0,1)
 	
-	if !is_valid_position:
-		position = init_position
-		snapToGrid()
+	if !is_position_valid():
+		position = getSnappedPosition(init_position)
 		return
 	
 	# Move cube from toolbar to main
@@ -81,18 +80,34 @@ func drop():
 	# Get new context absolute position
 	global_transform.origin = get_global_mouse_position()
 	
+	position = getSnappedPosition(position)
 	# Get a new init position for further illegal moves
 	init_position = Vector2(position)
 	
-	snapToGrid()
+	
+	
+func is_position_valid() -> bool:
+	if !is_valid_position:
+		return false
+	
+	var snapped_position = getSnappedPosition(get_global_mouse_position())
+	
+	for cube in get_tree().get_nodes_in_group("Cubes"):
+		if cube == self:
+			continue
+			
+		if cube.position == snapped_position:
+			return false
+	
+	return true
 	
 
-func snapToGrid():
+func getSnappedPosition(pos: Vector2) -> Vector2:
 	var vp_rect = get_viewport_rect()
 	
-	position.x = clamp(position.x, 0, vp_rect.size.x)
-	position.y = clamp(position.y, 0, vp_rect.size.y)
+	pos.x = clamp(pos.x, 0, vp_rect.size.x)
+	pos.y = clamp(pos.y, 0, vp_rect.size.y)
 	
 	# Calculate position through tile number
-	var tileNum = (position / tile_size).floor()
-	position = tileNum * tile_size + Vector2.ONE * tile_size / 2
+	var tileNum = (pos / tile_size).floor()
+	return tileNum * tile_size + Vector2.ONE * tile_size / 2
