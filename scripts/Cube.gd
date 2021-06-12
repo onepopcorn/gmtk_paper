@@ -72,6 +72,9 @@ func drop():
 	get_parent().remove_child(self)
 	root.add_child(self)
 	
+	# Add cubes to a group for easy retrieval
+	add_to_group("Cubes")
+	
 	# Get new context absolute position
 	global_transform.origin = get_global_mouse_position()
 	

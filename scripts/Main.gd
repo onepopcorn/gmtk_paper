@@ -17,3 +17,18 @@ func onJoinCubesStop(cube):
 	union.z_index = 100000
 	union.show()
 	union = Union.instance()
+
+
+func _on_PlayBtn_gui_input(event):
+	if event.is_pressed():
+		print(Globals.is_playing)
+		if !Globals.is_playing:
+			start_game()
+			Globals.is_playing = true
+
+func start_game():
+	var cubes = get_tree().get_nodes_in_group("Cubes")
+	
+	# makes things go BOOOM!
+	for cube in cubes:
+		cube.mode = RigidBody2D.MODE_RIGID
