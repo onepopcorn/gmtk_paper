@@ -1,5 +1,8 @@
 extends RigidBody2D
 
+signal joinCubesStart(node)
+signal joinCubesStop(node)
+
 export (Color) var color = Color(0,0,0)
 
 var tile_size = 48
@@ -29,9 +32,15 @@ func _on_mouse_input_event(_viewport, event, _shape_idx):
 		if event.is_pressed() and event.button_index == BUTTON_LEFT:
 			pickup()
 
+		if event.button_index == BUTTON_RIGHT:
+			if event.is_pressed():
+				emit_signal("joinCubesStart", self)
+			else:
+				emit_signal("joinCubesStop", self)
+
 		if !event.is_pressed():
 			drop()
-		
+
 func pickup():
 	if dragging:
 		return
@@ -41,10 +50,12 @@ func pickup():
 func drop():
 	if not dragging:
 		return
-	mode = RigidBody2D.MODE_CHARACTER
+	# mode = RigidBody2D.MODE_CHARACTER
 	snapToGrid()
 	dragging = false
 
 func snapToGrid():
+	position.x = clamp(position.x, 0, get_viewport_rect().size.x)
+	position.y = clamp(position.y, 0, get_viewport_rect().size.y)
 	position = position.snapped(Vector2.ONE * tile_size)
 	position += Vector2.ONE * tile_size / 2

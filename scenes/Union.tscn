@@ -1,0 +1,4 @@
+[gd_scene format=2]
+
+[node name="Union" type="Line2D"]
+show_behind_parent = true
