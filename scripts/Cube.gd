@@ -21,24 +21,30 @@ func _ready():
 
 func _process(_delta):
 	if dragging:
-		set_position(get_viewport().get_mouse_position())
+		global_transform.origin = get_global_mouse_position()
 	
 
 func _on_mouse_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton:
-		mode = RigidBody2D.MODE_STATIC
-		
 		print("dragging ", dragging)
-		if event.is_pressed() or dragging == false:
-			dragging = true
-		else:
-			dragging = false
-			snapToGrid()
-	
-		if dragging == false:
-			mode = RigidBody2D.MODE_RIGID
-		
+		if event.is_pressed() and event.button_index == BUTTON_LEFT:
+			pickup()
 
+		if !event.is_pressed():
+			drop()
+		
+func pickup():
+	if dragging:
+		return
+	mode = RigidBody2D.MODE_STATIC
+	dragging = true
+
+func drop():
+	if not dragging:
+		return
+	mode = RigidBody2D.MODE_CHARACTER
+	snapToGrid()
+	dragging = false
 
 func snapToGrid():
 	position = position.snapped(Vector2.ONE * tile_size)
