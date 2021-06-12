@@ -23,8 +23,8 @@ func _on_PlayBtn_gui_input(event):
 	if event.is_pressed():
 		print(Globals.is_playing)
 		if !Globals.is_playing:
-			start_game()
 			Globals.is_playing = true
+			start_game()
 
 func start_game():
 	var cubes = get_tree().get_nodes_in_group("Cubes")

@@ -38,7 +38,7 @@ func _process(_delta):
 	
 
 func _on_mouse_input_event(_viewport, event, _shape_idx):
-	if event is InputEventMouseButton:
+	if event is InputEventMouseButton and !Globals.is_playing:
 		if event.is_pressed() and event.button_index == BUTTON_LEFT:
 			pickup()
 
@@ -90,5 +90,6 @@ func snapToGrid():
 	position.x = clamp(position.x, 0, vp_rect.size.x)
 	position.y = clamp(position.y, 0, vp_rect.size.y)
 	
+	# Calculate position through tile number
 	var tileNum = (position / tile_size).floor()
 	position = tileNum * tile_size + Vector2.ONE * tile_size / 2
