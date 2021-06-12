@@ -64,6 +64,7 @@ func drop():
 	
 	if !is_valid_position:
 		position = init_position
+		snapToGrid()
 		return
 	
 	# Move cube from toolbar to main
@@ -73,6 +74,9 @@ func drop():
 	
 	# Get new context absolute position
 	global_transform.origin = get_global_mouse_position()
+	
+	# Get a new init position for further illegal moves
+	init_position = Vector2(position)
 	
 	snapToGrid()
 	
