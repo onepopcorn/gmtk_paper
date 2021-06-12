@@ -10,11 +10,11 @@ extents = Vector2( 474.21, 23.4844 )
 [node name="Main" type="Node2D"]
 script = ExtResource( 2 )
 
+[node name="Toolbar" parent="." instance=ExtResource( 3 )]
+position = Vector2( 955.568, 101.76 )
+
 [node name="Bg" parent="." instance=ExtResource( 1 )]
 position = Vector2( -47.4517, 0 )
-
-[node name="Toolbar" parent="Bg" instance=ExtResource( 3 )]
-position = Vector2( 1003.02, 101.76 )
 
 [node name="Platform1" type="StaticBody2D" parent="."]
 collision_layer = 2
