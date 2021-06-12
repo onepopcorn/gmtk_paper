@@ -24,6 +24,8 @@ func _on_PlayBtn_gui_input(event):
 		print(Globals.is_playing)
 		if !Globals.is_playing:
 			Globals.is_playing = true
+			get_node("/root/Main/DropZone").visible = false
+			get_node("/root/Main/PlayBtn").visible = false
 			start_game()
 
 func start_game():
