@@ -55,12 +55,15 @@ func pickup():
 	if dragging:
 		return
 	dragging = true
+	if is_valid_position:
+		get_node("/root/Main/DropZone").modulate = Color(0,0,0,0.3)
 
 func drop():
 	if not dragging:
 		return
 	
 	dragging = false
+	get_node("/root/Main/DropZone").modulate = Color(0,0,0,1)
 	
 	if !is_valid_position:
 		position = init_position
