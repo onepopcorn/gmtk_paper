@@ -5,8 +5,16 @@ signal joinCubesStop(node)
 
 export (Color) var color = Color(0,0,0)
 
+enum STATE {
+	EDIT,
+	GAME
+}
+
 var tile_size = 48
 var dragging = false
+var state = STATE.EDIT
+var is_valid_position = false
+var init_position
 
 onready var player = get_node("AnimationPlayer")
 onready var sprite = get_node("Sprite")
@@ -14,13 +22,15 @@ onready var sprite = get_node("Sprite")
 func _ready():
 	snapToGrid()
 	
-	mode = RigidBody2D.MODE_STATIC
 	# Play square animation and prevent all cubes have the same animation (starting from a random frame)
 	player.play("Square")
 	player.seek(randi() % 5)
 	
 	# Set square color
 	sprite.modulate = color
+	
+	# Keep track of initial position
+	init_position = Vector2(position)
 
 func _process(_delta):
 	if dragging:
@@ -44,15 +54,28 @@ func _on_mouse_input_event(_viewport, event, _shape_idx):
 func pickup():
 	if dragging:
 		return
-	mode = RigidBody2D.MODE_STATIC
 	dragging = true
 
 func drop():
 	if not dragging:
 		return
-	# mode = RigidBody2D.MODE_CHARACTER
-	snapToGrid()
+	
 	dragging = false
+	
+	if !is_valid_position:
+		position = init_position
+		return
+	
+	# Move cube from toolbar to main
+	var root = get_tree().get_root()
+	get_parent().remove_child(self)
+	root.add_child(self)
+	
+	# Get new context absolute position
+	global_transform.origin = get_global_mouse_position()
+	
+	snapToGrid()
+	
 
 func snapToGrid():
 	position.x = clamp(position.x, 0, get_viewport_rect().size.x)

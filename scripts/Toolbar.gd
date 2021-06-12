@@ -3,10 +3,10 @@ extends Node2D
 const Cube = preload("res://scenes/Cube.tscn")
 
 var shapes = {
-	"square": 1,
-	"circle": 2,
-	"triangle": 1,
-	"star": 2
+	"square": 5,
+	"circle": 0,
+	"triangle": 0,
+	"star": 0
 }
 
 var colors = [
