@@ -26,7 +26,6 @@ func _process(_delta):
 
 func _on_mouse_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton:
-		print("dragging ", dragging)
 		if event.is_pressed() and event.button_index == BUTTON_LEFT:
 			pickup()
 
