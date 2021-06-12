@@ -1,18 +1,20 @@
 extends Node2D
 
-var held_object = null
+const Cube = preload("res://scenes/Cube.tscn")
+
+var cubes = [
+	'e82222',
+	'261bed',
+	'29b719',
+	'b719d3'
+]
 
 func _ready():
-	for node in get_tree().get_nodes_in_group("pickable"):
-		node.connect("clicked", self, "_on_pickable_clicked")
-		
-func _on_pickable_clicked(object):
-	if !held_object:
-		held_object = object
-		held_object.pickup()
-		
-func _unhandled_input(event):
-    if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
-        if held_object and !event.pressed:
-            held_object.drop()
-            held_object = null
+	var last_pos = Vector2(48 * 6, 48)
+	for color in cubes:
+		var cube = Cube.instance()
+		cube.color = color
+		cube.position = last_pos
+		add_child(cube)
+
+		last_pos.x += cube.tile_size

@@ -1,22 +1,45 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://assets/purple_sq.png" type="Texture" id=1]
-[ext_resource path="res://scenes/Cube.gd" type="Script" id=2]
+[ext_resource path="res://assets/white_sq.png" type="Texture" id=1]
+[ext_resource path="res://scripts/Cube.gd" type="Script" id=2]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 23.8855, 23.5985 )
+[sub_resource type="Animation" id=1]
+resource_name = "Square"
+length = 6.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5 ]
+}
 
-[node name="Cube" type="RigidBody2D" groups=[
-"pickable",
-]]
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 24, 24 )
+
+[node name="Cube" type="RigidBody2D"]
 input_pickable = true
-mode = 3
+collision_mask = 3
 script = ExtResource( 2 )
+color = Color( 0.470588, 0.227451, 0.227451, 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite")
+playback_speed = 15.0
+anims/Square = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
+hframes = 6
+frame = 5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
-
-[connection signal="input_event" from="." to="." method="_on_Cube_input_event"]
+[connection signal="input_event" from="." to="." method="_on_mouse_input_event"]

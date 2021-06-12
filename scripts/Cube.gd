@@ -1,36 +1,45 @@
 extends RigidBody2D
 
+export (Color) var color = Color(0,0,0)
 
-signal clicked
+var tile_size = 48
+var dragging = false
 
-var held = false
-var tile_size: = 64
+onready var player = get_node("AnimationPlayer")
+onready var sprite = get_node("Sprite")
 
-func _input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
-			emit_signal("clicked", self)
-
-
-func _physics_process(delta):
-	if held:
-		global_transform.origin = get_global_mouse_position()
-		# position.snapped(Vector2.ONE * tile_size)
-		
-func pickup():
-	if held:
-		return
-		
+func _ready():
+	snapToGrid()
+	
 	mode = RigidBody2D.MODE_STATIC
-	held = true
+	# Play square animation and prevent all cubes have the same animation (starting from a random frame)
+	player.play("Square")
+	player.seek(randi() % 5)
 	
+	# Set square color
+	sprite.modulate = color
+
+func _process(_delta):
+	if dragging:
+		set_position(get_viewport().get_mouse_position())
 	
-func drop():
-	if held:
-		# mode = RigidBody2D.MODE_RIGID
-		# apply_central_impulse(impulse)
-		held = false
+
+func _on_mouse_input_event(_viewport, event, _shape_idx):
+	if event is InputEventMouseButton:
+		mode = RigidBody2D.MODE_STATIC
+		
+		print("dragging ", dragging)
+		if event.is_pressed() or dragging == false:
+			dragging = true
+		else:
+			dragging = false
+			snapToGrid()
+	
+		if dragging == false:
+			mode = RigidBody2D.MODE_RIGID
+		
 
 
-func _on_Cube_input_event(viewport, event, shape_idx):
-	pass # Replace with function body.
+func snapToGrid():
+	position = position.snapped(Vector2.ONE * tile_size)
+	position += Vector2.ONE * tile_size / 2
