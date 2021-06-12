@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/dropzone.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 398.416, 87.0584 )
+extents = Vector2( 373.018, 70.3904 )
 
 [node name="DropZone" type="Area2D"]
 script = ExtResource( 1 )
