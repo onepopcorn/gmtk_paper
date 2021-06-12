@@ -22,7 +22,7 @@ position = Vector2( 99.5338, 449.792 )
 shape = SubResource( 1 )
 
 [node name="DropZone" parent="." instance=ExtResource( 4 )]
-position = Vector2( 454.889, 143.057 )
+position = Vector2( 456.889, 142.057 )
 collision_layer = 4
 
 [node name="Toolbar" parent="." instance=ExtResource( 3 )]
