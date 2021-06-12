@@ -82,7 +82,10 @@ func drop():
 	
 
 func snapToGrid():
-	position.x = clamp(position.x, 0, get_viewport_rect().size.x)
-	position.y = clamp(position.y, 0, get_viewport_rect().size.y)
-	position = position.snapped(Vector2.ONE * tile_size)
-	position += Vector2.ONE * tile_size / 2
+	var vp_rect = get_viewport_rect()
+	
+	position.x = clamp(position.x, 0, vp_rect.size.x)
+	position.y = clamp(position.y, 0, vp_rect.size.y)
+	
+	var tileNum = (position / tile_size).floor()
+	position = tileNum * tile_size + Vector2.ONE * tile_size / 2
