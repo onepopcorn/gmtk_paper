@@ -22,7 +22,8 @@ func onJoinCubesStop(cube):
 func _on_PlayBtn_gui_input(event):
 	if event.is_pressed():
 		print(Globals.is_playing)
-		if !Globals.is_playing:
+		if !Globals.is_playing and game_can_start():
+			
 			Globals.is_playing = true
 			get_node("/root/Main/DropZone").visible = false
 			get_node("/root/Main/PlayBtn").visible = false
@@ -34,3 +35,9 @@ func start_game():
 	# makes things go BOOOM!
 	for cube in cubes:
 		cube.mode = RigidBody2D.MODE_RIGID
+
+func game_can_start() -> bool:
+	var cubes = get_tree().get_nodes_in_group("Cubes")
+	if Globals.n_cubes != len(cubes):
+		return false
+	return true

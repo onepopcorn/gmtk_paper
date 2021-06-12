@@ -16,3 +16,5 @@ var shapes = {
 	"triangle": 1,
 	"star": 2
 }
+
+var n_cubes = shapes["square"] + shapes["circle"] + shapes["triangle"] + shapes["star"]
