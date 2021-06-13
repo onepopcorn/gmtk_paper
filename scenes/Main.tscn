@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scenes/Bg.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/Main.gd" type="Script" id=2]
@@ -10,10 +10,9 @@
 [ext_resource path="res://scenes/Obstacles/Slide.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/Obstacles/Laser.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/Obstacles/Impulser.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scenes/Obstacles/Stop.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/FinalMessage.tscn" type="PackedScene" id=12]
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=1]
 resource_name = "VerticalPan"
 length = 10.0
 tracks/0/type = "value"
@@ -29,13 +28,13 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, 1285 ), Vector2( 0, 1285 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 624.863, 23.4844 )
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 15.9809, 920.171 )
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=4]
 flags = 4
 atlas = ExtResource( 5 )
 region = Rect2( 200, 0, 107, 50 )
@@ -65,7 +64,7 @@ drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 
 [node name="InitialPan" type="AnimationPlayer" parent="Camera2D"]
-anims/VerticalPan = SubResource( 4 )
+anims/VerticalPan = SubResource( 1 )
 
 [node name="Field" type="Node2D" parent="."]
 
@@ -74,7 +73,7 @@ position = Vector2( 430, 1835 )
 collision_layer = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Field/Floor"]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -89,13 +88,13 @@ texture = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Field/wall_left"]
 position = Vector2( -14.922, 918.068 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="wall_right" type="StaticBody2D" parent="Field"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Field/wall_right"]
 position = Vector2( 1039.37, 918.068 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="Targets" type="Node2D" parent="Field"]
 position = Vector2( 47.6008, 1.52417 )
@@ -106,12 +105,10 @@ color = 3
 
 [node name="Target2" parent="Field/Targets" instance=ExtResource( 7 )]
 position = Vector2( 313.64, 1788.61 )
-shape = 1
 color = 2
 
 [node name="Target3" parent="Field/Targets" instance=ExtResource( 7 )]
-position = Vector2( 361.781, 1788.61 )
-shape = 2
+position = Vector2( 362.342, 1789.17 )
 color = 1
 
 [node name="Target4" parent="Field/Targets" instance=ExtResource( 7 )]
@@ -123,7 +120,6 @@ color = 2
 
 [node name="Target6" parent="Field/Targets" instance=ExtResource( 7 )]
 position = Vector2( 409.647, 1787.12 )
-shape = 2
 color = 1
 
 [node name="Obstacles" type="Node2D" parent="Field"]
@@ -131,37 +127,77 @@ color = 1
 [node name="Slide" parent="Field/Obstacles" groups=[
 "obstacles",
 ] instance=ExtResource( 8 )]
-position = Vector2( 322.861, 483.39 )
+position = Vector2( 704.057, 448.673 )
 rotation = 0.352557
 collision_mask = 0
 color = 1
 
+[node name="Slide2" parent="Field/Obstacles" groups=[
+"obstacles",
+] instance=ExtResource( 8 )]
+position = Vector2( 395.491, 1598.31 )
+rotation = -1.5708
+collision_mask = 0
+color = 2
+
+[node name="Slide4" parent="Field/Obstacles" groups=[
+"obstacles",
+] instance=ExtResource( 8 )]
+position = Vector2( 551.819, 1645.68 )
+rotation = -0.490438
+collision_mask = 0
+color = 2
+
+[node name="Slide3" parent="Field/Obstacles" groups=[
+"obstacles",
+] instance=ExtResource( 8 )]
+position = Vector2( 215.31, 1579.94 )
+rotation = 0.455531
+collision_mask = 0
+color = 2
+
 [node name="Laser" parent="Field/Obstacles" groups=[
 "obstacles",
 ] instance=ExtResource( 9 )]
-position = Vector2( 551.972, 695.809 )
+position = Vector2( 378.562, 1262.05 )
+scale = Vector2( 0.69, 1 )
+color = 2
+
+[node name="Laser2" parent="Field/Obstacles" groups=[
+"obstacles",
+] instance=ExtResource( 9 )]
+position = Vector2( 648.095, 1102 )
+rotation = 1.5708
+scale = Vector2( 0.69, 1 )
+color = 1
 
 [node name="Impulser" parent="Field/Obstacles" groups=[
 "obstacles",
 ] instance=ExtResource( 10 )]
-position = Vector2( 838.969, 691.341 )
+position = Vector2( 796.143, 926.884 )
 rotation = 1.58825
+scale = Vector2( 0.8, 0.8 )
 collision_layer = 2
 collision_mask = 0
 color = 1
+
+[node name="Impulser3" parent="Field/Obstacles" groups=[
+"obstacles",
+] instance=ExtResource( 10 )]
+position = Vector2( 358.445, 1645.52 )
+rotation = -3.13985
+collision_layer = 2
+collision_mask = 0
+color = 2
 
 [node name="Impulser2" parent="Field/Obstacles" groups=[
 "obstacles",
 ] instance=ExtResource( 10 )]
-position = Vector2( 790.248, 691.341 )
-rotation = -1.5708
+position = Vector2( 312.086, 742.139 )
+rotation = -3.14159
 collision_layer = 2
 collision_mask = 0
-color = 1
-
-[node name="Stop" parent="Field/Obstacles" instance=ExtResource( 11 )]
-position = Vector2( 694.809, 355.697 )
-color = 1
+color = 3
 
 [node name="PlayBtn" type="TextureButton" parent="."]
 margin_left = 339.0
@@ -169,7 +205,7 @@ margin_top = 288.0
 margin_right = 527.0
 margin_bottom = 376.0
 disabled = true
-texture_normal = SubResource( 3 )
+texture_normal = SubResource( 4 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -178,6 +214,7 @@ __meta__ = {
 [node name="FinalMessage" parent="." instance=ExtResource( 12 )]
 visible = false
 position = Vector2( 404.922, 1545.12 )
+z_index = 30
 
 [node name="CubesMovingCheck" type="Timer" parent="."]
 autostart = true

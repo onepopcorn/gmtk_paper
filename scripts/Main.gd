@@ -46,10 +46,11 @@ func _on_PlayBtn_gui_input(event):
 			
 func _on_cube_destroyed(node):
 	if cam.get_parent() == node:
-		node.remove_from_group('Cubes')
-		node.queue_free()
-		get_tree().get_root().remove_child(node)
 		update_camera_follow()
+	
+	get_tree().get_root().remove_child(node)
+	node.remove_from_group('Cubes')
+	node.queue_free()
 		
 func _on_cube_frozen(node):
 	node.remove_from_group('Cubes')
@@ -67,8 +68,8 @@ func start_game():
 		cube.connect("cube_frozen", self, "_on_cube_frozen")
 		
 		# Give some physics properties to the falling pieces
-		cube.set_friction(.3)
-		cube.set_bounce(.3)
+		cube.set_friction(.5)
+		# cube.set_bounce(.3)
 		last_game_state += cube.position
 	
 	

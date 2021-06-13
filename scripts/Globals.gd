@@ -25,8 +25,11 @@ enum Shapes {
 }
 
 var shapes = [
+	{"shape": "square", "color": Colors.Red},
+	{"shape": "square", "color": Colors.Green},
+	{"shape": "square", "color": Colors.Purple},
+	{"shape": "square", "color": Colors.Green},
 	{"shape": "square", "color": Colors.Blue},
-	{"shape": "circle", "color": Colors.Blue},
-	{"shape": "triangle", "color": Colors.Green},
+	{"shape": "square", "color": Colors.Blue}
 ]
 

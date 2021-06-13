@@ -10,5 +10,6 @@ func _ready():
 
 
 func _on_Laser_body_entered(body):
+	print(body, ' collided')
 	# Destroy body if collision occures
 	body.destroy()

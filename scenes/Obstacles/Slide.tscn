@@ -4,7 +4,7 @@
 [ext_resource path="res://scripts/Obstacles/Slider.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 69.9686, 10 )
+extents = Vector2( 69.9686, 2.25 )
 
 [node name="Slide" type="RigidBody2D"]
 collision_layer = 2
@@ -12,6 +12,7 @@ mode = 3
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -7 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
