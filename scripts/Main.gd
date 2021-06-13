@@ -56,7 +56,7 @@ func start_game():
 
 func game_can_start() -> bool:
 	var cubes = get_tree().get_nodes_in_group("Cubes")
-	if Globals.n_cubes != len(cubes):
+	if len(Globals.shapes) != len(cubes):
 		return false
 	return true
 

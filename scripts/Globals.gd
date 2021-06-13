@@ -24,11 +24,9 @@ enum Shapes {
 	star
 }
 
-var shapes = {
-	"square": 0,
-	"circle": 0,
-	"triangle": 0,
-	"star": 1
-}
+var shapes = [
+	{"shape": "square", "color": Colors.Blue},
+	{"shape": "circle", "color": Colors.Blue},
+	{"shape": "triangle", "color": Colors.Green},
+]
 
-var n_cubes = shapes["square"] + shapes["circle"] + shapes["triangle"] + shapes["star"]
