@@ -54,6 +54,9 @@ func start_game():
 	
 	update_camera_follow()
 
+func _process(delta):
+	check_game_state()
+
 func game_can_start() -> bool:
 	var cubes = get_tree().get_nodes_in_group("Cubes")
 	if len(Globals.shapes) != len(cubes):
@@ -84,3 +87,10 @@ func get_lowest_node() ->Node2D:
 		lowest = node if node.position.y < lowest.position.y else lowest
 		
 	return lowest
+	
+func check_game_state():
+	var active_cubes = get_tree().get_nodes_in_group("Cubes")
+	var targets = get_node("Field/Targets").get_children()
+	
+	
+	print(active_cubes, ' ', targets)
