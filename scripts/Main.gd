@@ -27,7 +27,6 @@ func onJoinCubesStop(cube):
 	union = Union.instance()
 
 func _ready():
-	return
 	# Prevent interactivty until camera finish animation
 	toolbar.visible = false
 	btn.disabled = true
