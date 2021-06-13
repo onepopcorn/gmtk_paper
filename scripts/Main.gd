@@ -102,7 +102,7 @@ func get_lowest_node() ->Node2D:
 	var lowest = nodes[0]
 	
 	for node in nodes:
-		lowest = node if node.position.y > lowest.position.y else lowest
+		lowest = node if node.position.y < lowest.position.y else lowest
 		
 	return lowest
 	
