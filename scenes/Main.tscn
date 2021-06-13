@@ -115,7 +115,7 @@ color = 1
 position = Vector2( 314.213, 1741.34 )
 
 [node name="Target5" parent="Field/Targets" instance=ExtResource( 7 )]
-position = Vector2( 362.078, 1740.74 )
+position = Vector2( 313.64, 1687.56 )
 color = 2
 
 [node name="Target6" parent="Field/Targets" instance=ExtResource( 7 )]
@@ -128,22 +128,38 @@ color = 1
 "obstacles",
 ] instance=ExtResource( 8 )]
 position = Vector2( 704.057, 448.673 )
-rotation = 0.352557
+rotation = -0.58294
 collision_mask = 0
 color = 1
 
 [node name="Slide2" parent="Field/Obstacles" groups=[
 "obstacles",
 ] instance=ExtResource( 8 )]
-position = Vector2( 395.491, 1598.31 )
+position = Vector2( 393.726, 1358.69 )
 rotation = -1.5708
+collision_mask = 0
+color = 2
+
+[node name="Slide6" parent="Field/Obstacles" groups=[
+"obstacles",
+] instance=ExtResource( 8 )]
+position = Vector2( 326.122, 1692.04 )
+rotation = 1.5708
+collision_mask = 0
+color = 2
+
+[node name="Slide5" parent="Field/Obstacles" groups=[
+"obstacles",
+] instance=ExtResource( 8 )]
+position = Vector2( 326.122, 1545.12 )
+rotation = 1.5708
 collision_mask = 0
 color = 2
 
 [node name="Slide4" parent="Field/Obstacles" groups=[
 "obstacles",
 ] instance=ExtResource( 8 )]
-position = Vector2( 551.819, 1645.68 )
+position = Vector2( 595.472, 1636.95 )
 rotation = -0.490438
 collision_mask = 0
 color = 2
@@ -151,7 +167,7 @@ color = 2
 [node name="Slide3" parent="Field/Obstacles" groups=[
 "obstacles",
 ] instance=ExtResource( 8 )]
-position = Vector2( 215.31, 1579.94 )
+position = Vector2( 217.485, 1349.95 )
 rotation = 0.455531
 collision_mask = 0
 color = 2
@@ -171,20 +187,35 @@ rotation = 1.5708
 scale = Vector2( 0.69, 1 )
 color = 1
 
+[node name="Laser3" parent="Field/Obstacles" groups=[
+"obstacles",
+] instance=ExtResource( 9 )]
+position = Vector2( 134.952, 688.912 )
+scale = Vector2( 0.69, 1 )
+color = 1
+
 [node name="Impulser" parent="Field/Obstacles" groups=[
 "obstacles",
 ] instance=ExtResource( 10 )]
-position = Vector2( 796.143, 926.884 )
+position = Vector2( 168.551, 1407.84 )
 rotation = 1.58825
 scale = Vector2( 0.8, 0.8 )
 collision_layer = 2
 collision_mask = 0
-color = 1
 
 [node name="Impulser3" parent="Field/Obstacles" groups=[
 "obstacles",
 ] instance=ExtResource( 10 )]
-position = Vector2( 358.445, 1645.52 )
+position = Vector2( 361.814, 1454.24 )
+rotation = -3.13985
+collision_layer = 2
+collision_mask = 0
+color = 2
+
+[node name="Impulser4" parent="Field/Obstacles" groups=[
+"obstacles",
+] instance=ExtResource( 10 )]
+position = Vector2( 217.209, 1071.24 )
 rotation = -3.13985
 collision_layer = 2
 collision_mask = 0
