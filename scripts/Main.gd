@@ -5,6 +5,8 @@ const Union = preload("res://scenes/Union.tscn")
 
 onready var union = Union.instance()
 onready var cam = $Camera2D
+onready var toolbar = $Toolbar
+onready var btn = $PlayBtn
 
 func onJoinCubesStart(cube):
 	print("start")
@@ -18,6 +20,14 @@ func onJoinCubesStop(cube):
 	union.z_index = 100000
 	union.show()
 	union = Union.instance()
+
+func _ready():
+	# Prevent interactivty until camera finish animation
+	toolbar.visible = false
+	btn.disabled = true
+	btn.visible = false
+	
+	cam.get_node("InitialPan").play("VerticalPan")
 
 
 func _on_PlayBtn_gui_input(event):
@@ -54,9 +64,6 @@ func start_game():
 	
 	update_camera_follow()
 
-func _process(delta):
-	check_game_state()
-
 func game_can_start() -> bool:
 	var cubes = get_tree().get_nodes_in_group("Cubes")
 	if len(Globals.shapes) != len(cubes):
@@ -84,7 +91,7 @@ func get_lowest_node() ->Node2D:
 	var lowest = nodes[0]
 	
 	for node in nodes:
-		lowest = node if node.position.y < lowest.position.y else lowest
+		lowest = node if node.position.y > lowest.position.y else lowest
 		
 	return lowest
 	
@@ -94,3 +101,9 @@ func check_game_state():
 	
 	
 	print(active_cubes, ' ', targets)
+
+
+func _on_InitialPan_animation_finished(anim_name):
+	toolbar.visible = true
+	btn.disabled = true
+	btn.visible = true
