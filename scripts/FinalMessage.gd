@@ -15,5 +15,4 @@ func display_lose():
 
 
 func _on_TextureButton_pressed():
-	
 	get_node("/root/Main").replay()
