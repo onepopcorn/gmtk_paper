@@ -26,7 +26,7 @@ enum Shapes {
 
 var shapes = {
 	"square": 0,
-	"circle": 1,
+	"circle": 0,
 	"triangle": 0,
 	"star": 1
 }

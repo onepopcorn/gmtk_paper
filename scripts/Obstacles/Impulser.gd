@@ -11,4 +11,12 @@ func _ready():
 	
 
 func _on_Area2D_body_entered(body):
-	body.apply_central_impulse(Vector2(0, -200))
+	var orientation = Vector2(sin(global_rotation), -cos(global_rotation))
+	print("Orientation: ", orientation)
+	var body_orientation = Vector2(sin(body.global_rotation), -cos(body.global_rotation))
+	print("Body orientation: ", body_orientation)
+	var rel_angle = body_orientation.angle_to(orientation)
+	print("Rel angle", rel_angle * 180 / PI)
+	var impulse_direction = body_orientation.rotated(rel_angle)
+	
+	body.apply_central_impulse(400 * impulse_direction)
