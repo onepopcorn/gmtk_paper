@@ -35,6 +35,10 @@ func start_game():
 	# makes things go BOOOM!
 	for cube in cubes:
 		cube.mode = RigidBody2D.MODE_RIGID
+		
+		# Give some physics properties to the falling pieces
+		cube.set_friction(.3)
+		cube.set_bounce(.3)
 	
 	update_camera_follow()
 

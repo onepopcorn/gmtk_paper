@@ -23,6 +23,10 @@ func _ready():
 	# Set square color
 	sprite.modulate = color
 	
+	# Set collision by color
+	var coll_layer = (Globals.colors.find(color) + 1) * 10
+	set_collision_layer_bit(coll_layer, true)
+	
 	# Keep track of initial position
 	init_position = Vector2(position)
 

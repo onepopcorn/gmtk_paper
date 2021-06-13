@@ -5,15 +5,13 @@ const Cube = preload("res://scenes/Cube.tscn")
 
 func _ready():
 	# Use this to create real randomness
-	Globals.colors.sort()
 	randomize()
 	var last_y = 0
 	for shape in Globals.shapes:
 		var num = Globals.shapes[shape]
 		for i in range(0, num):
 			var cube = Cube.instance()
-			# cube.color = Globals.colors[randi() % Globals.colors.size()]
-			cube.color = Globals.colors[0]
+			cube.color = Globals.colors[randi() % Globals.colors.size()]
 			cube.position.y = last_y * cube.tile_size
 			last_y += 1
 			

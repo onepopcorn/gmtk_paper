@@ -42,6 +42,11 @@ singletons=[ "res://git_api.gdnlib" ]
 2d_physics/layer_1="cubes"
 2d_physics/layer_2="obstacles"
 2d_physics/layer_3="dropzone"
+2d_physics/layer_4="floor"
+2d_physics/layer_11="red"
+2d_physics/layer_12="blue"
+2d_physics/layer_13="green"
+2d_physics/layer_14="purple"
 
 [physics]
 
