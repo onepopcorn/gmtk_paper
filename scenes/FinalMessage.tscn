@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/replay.png" type="Texture" id=1]
+[ext_resource path="res://assets/loose_message.png" type="Texture" id=2]
+[ext_resource path="res://assets/win_message.png" type="Texture" id=3]
+[ext_resource path="res://scripts/FinalMessage.gd" type="Script" id=4]
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 30, 0, 240, 50 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 26, 0, 196, 49 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, -2, 188, 49 )
+
+[node name="FinalMessage" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="Loose" type="Sprite" parent="."]
+visible = false
+position = Vector2( 0.198425, 0 )
+scale = Vector2( 1.00131, 1 )
+texture = SubResource( 1 )
+region_rect = Rect2( 30, 0, 190, 50 )
+
+[node name="Win" type="Sprite" parent="."]
+visible = false
+texture = SubResource( 2 )
+
+[node name="TextureButton" type="TextureButton" parent="."]
+margin_left = -93.6567
+margin_top = 27.3827
+margin_right = 94.3433
+margin_bottom = 76.3827
+texture_normal = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
