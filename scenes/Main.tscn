@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scenes/Bg.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/Main.gd" type="Script" id=2]
@@ -8,15 +8,18 @@
 [ext_resource path="res://assets/floor.png" type="Texture" id=6]
 [ext_resource path="res://scenes/Target.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/Obstacles/Slide.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scripts/ObstacleColor.gd" type="Script" id=9]
+[ext_resource path="res://scenes/Obstacles/Laser.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/Obstacles/Impulser.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/Obstacles/Stop.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/Obstacles/Weight.tscn" type="PackedScene" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 624.863, 23.4844 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 15.9809, 920.171 )
 
-[sub_resource type="AtlasTexture" id=2]
+[sub_resource type="AtlasTexture" id=3]
 flags = 4
 atlas = ExtResource( 5 )
 region = Rect2( 200, 0, 100, 50 )
@@ -47,11 +50,12 @@ drag_margin_v_enabled = true
 
 [node name="Field" type="Node2D" parent="."]
 
-[node name="Slide" parent="Field" instance=ExtResource( 8 )]
+[node name="Slide" parent="Field" groups=[
+"obstacles",
+] instance=ExtResource( 8 )]
 position = Vector2( 322.861, 483.39 )
 rotation = -0.58294
 collision_mask = 0
-script = ExtResource( 9 )
 color = 1
 
 [node name="Floor" type="StaticBody2D" parent="Field"]
@@ -88,20 +92,41 @@ color = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Field/wall_left"]
 position = Vector2( -14.922, 918.068 )
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="wall_right" type="StaticBody2D" parent="Field"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Field/wall_right"]
 position = Vector2( 1039.37, 918.068 )
-shape = SubResource( 3 )
+shape = SubResource( 2 )
+
+[node name="Laser" parent="Field" groups=[
+"obstacles",
+] instance=ExtResource( 9 )]
+position = Vector2( 598.299, 498.92 )
+
+[node name="Impulser" parent="Field" groups=[
+"obstacles",
+] instance=ExtResource( 10 )]
+position = Vector2( 646.979, 358.815 )
+rotation = 0.776672
+collision_layer = 2
+collision_mask = 0
+color = 1
+
+[node name="Stop" parent="Field" instance=ExtResource( 11 )]
+position = Vector2( 553.959, 355.067 )
+color = 2
+
+[node name="Weight" parent="Field" instance=ExtResource( 12 )]
+position = Vector2( 264.866, 309.363 )
 
 [node name="PlayBtn" type="TextureButton" parent="."]
 margin_left = 338.5
 margin_top = 288.0
 margin_right = 526.5
 margin_bottom = 376.0
-texture_normal = SubResource( 2 )
+texture_normal = SubResource( 3 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false

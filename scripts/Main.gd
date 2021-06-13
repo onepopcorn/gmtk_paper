@@ -27,6 +27,16 @@ func _on_PlayBtn_gui_input(event):
 			get_node("/root/Main/DropZone").visible = false
 			get_node("/root/Main/PlayBtn").visible = false
 			start_game()
+			
+func _on_cube_destroyed(node):
+	if cam.get_parent() == node:
+		node.remove_from_group('Cubes')
+		node.queue_free()
+		update_camera_follow()
+		
+func _on_cube_frozen(node):
+	node.remove_from_group('Cubes')
+	update_camera_follow()
 
 func start_game():
 	var cubes = get_tree().get_nodes_in_group("Cubes")
@@ -35,6 +45,8 @@ func start_game():
 	# makes things go BOOOM!
 	for cube in cubes:
 		cube.mode = RigidBody2D.MODE_RIGID
+		cube.connect("cube_destroyed", self, "_on_cube_destroyed")
+		cube.connect("cube_frozen", self, "_on_cube_frozen")
 		
 		# Give some physics properties to the falling pieces
 		cube.set_friction(.3)
@@ -50,12 +62,22 @@ func game_can_start() -> bool:
 
 func update_camera_follow():
 	var node = get_lowest_node()
+	if !node:
+		return
 	
-	cam.get_parent().remove_child(cam)
+	var cam_parent = cam.get_parent()
+	
+	if cam_parent:
+		cam_parent.remove_child(cam)
+	
 	node.add_child(cam)
 	
 func get_lowest_node() ->Node2D:
 	var nodes = get_tree().get_nodes_in_group("Cubes")
+	
+	if !nodes:
+		return null
+	
 	var lowest = nodes[0]
 	
 	for node in nodes:

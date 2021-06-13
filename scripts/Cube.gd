@@ -13,6 +13,9 @@ var init_position
 onready var player = get_node("AnimationPlayer")
 onready var sprite = get_node("Sprite")
 
+signal cube_destroyed
+signal cube_frozen
+
 func _ready():
 	position = getSnappedPosition(position)
 	
@@ -109,4 +112,14 @@ func getSnappedPosition(pos: Vector2) -> Vector2:
 	# Calculate position through tile number
 	var tileNum = (pos / tile_size).floor()
 	return tileNum * tile_size + Vector2.ONE * tile_size / 2
+	
+func destroy():
+	emit_signal("cube_destroyed", self)
+
+func freeze():
+	print("that should freeze the body")
+	mode = RigidBody2D.MODE_KINEMATIC
+	linear_velocity = Vector2.ZERO
+	angular_velocity = 0
+	emit_signal("cube_frozen", self)
 
