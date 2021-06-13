@@ -8,6 +8,11 @@ onready var cam = $Camera2D
 onready var toolbar = $Toolbar
 onready var btn = $PlayBtn
 
+# Adding all the positions of all the cubes
+var last_game_state
+var game_started = false
+var game_finished = false
+
 func onJoinCubesStart(cube):
 	print("start")
 	union.add_point(cube.position)
@@ -53,6 +58,7 @@ func start_game():
 	var cubes = get_tree().get_nodes_in_group("Cubes")
 	var lowest = cubes[0]
 	
+	last_game_state = Vector2(0,0)
 	# makes things go BOOOM!
 	for cube in cubes:
 		cube.mode = RigidBody2D.MODE_RIGID
@@ -62,8 +68,11 @@ func start_game():
 		# Give some physics properties to the falling pieces
 		cube.set_friction(.3)
 		cube.set_bounce(.3)
+		last_game_state += cube.position
+	
 	
 	update_camera_follow()
+	game_started = true
 
 func game_can_start() -> bool:
 	var cubes = get_tree().get_nodes_in_group("Cubes")
@@ -96,15 +105,37 @@ func get_lowest_node() ->Node2D:
 		
 	return lowest
 	
-func check_game_state():
-	var active_cubes = get_tree().get_nodes_in_group("Cubes")
-	var targets = get_node("Field/Targets").get_children()
-	
-	
-	print(active_cubes, ' ', targets)
-
-
 func _on_InitialPan_animation_finished(anim_name):
 	toolbar.visible = true
 	btn.disabled = true
 	btn.visible = true
+
+func has_player_won():
+	for target in get_node("Field/Targets").get_children():
+		if !target.correct_match:
+			return false
+	return true
+
+func finish_game():
+	print("Game finished")
+	$CubesMovingCheck.stop()
+	if has_player_won():
+		print("player won")
+	else:
+		print("player lost")
+
+
+func _on_CubesMovingCheck_timeout():
+	if not game_started:
+		return
+
+	var current_game_state = Vector2(0,0)
+	var cubes = get_tree().get_nodes_in_group("Cubes")
+	for cube in cubes:
+		current_game_state += cube.position
+		
+	if (last_game_state - current_game_state).length_squared() < 0.1:
+		finish_game()
+		return
+
+	last_game_state = current_game_state
