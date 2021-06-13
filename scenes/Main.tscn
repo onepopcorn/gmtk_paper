@@ -7,7 +7,7 @@
 [ext_resource path="res://assets/purple_sq.png" type="Texture" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 474.21, 23.4844 )
+extents = Vector2( 624.863, 23.4844 )
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 2 )
@@ -15,19 +15,33 @@ script = ExtResource( 2 )
 [node name="Bg" parent="." instance=ExtResource( 1 )]
 position = Vector2( -46.1169, -1.33484 )
 
-[node name="Platform1" type="StaticBody2D" parent="."]
-collision_layer = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform1"]
-position = Vector2( 99.5338, 449.792 )
-shape = SubResource( 1 )
-
 [node name="DropZone" parent="." instance=ExtResource( 4 )]
 position = Vector2( 456.889, 142.057 )
 collision_layer = 4
 
 [node name="Toolbar" parent="." instance=ExtResource( 3 )]
 position = Vector2( 959.79, 93.0684 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+limit_left = 0
+limit_top = 0
+limit_right = 1024
+limit_bottom = 1887
+limit_smoothed = true
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+
+[node name="Field" type="Node2D" parent="."]
+
+[node name="Floor" type="StaticBody2D" parent="Field"]
+modulate = Color( 1, 0.0509804, 0.0509804, 1 )
+self_modulate = Color( 1, 0, 0, 1 )
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Field/Floor"]
+position = Vector2( 433, 1789.56 )
+shape = SubResource( 1 )
 
 [node name="PlayBtn" type="TextureButton" parent="."]
 margin_left = 387.811

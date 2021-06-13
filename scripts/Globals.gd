@@ -11,10 +11,10 @@ var colors = [
 ]
 
 var shapes = {
-	"square": 3,
-	"circle": 1,
+	"square": 0,
+	"circle": 0,
 	"triangle": 1,
-	"star": 2
+	"star": 0
 }
 
 var n_cubes = shapes["square"] + shapes["circle"] + shapes["triangle"] + shapes["star"]
