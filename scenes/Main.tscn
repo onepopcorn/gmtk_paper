@@ -179,10 +179,9 @@ __meta__ = {
 visible = false
 position = Vector2( 404.922, 1545.12 )
 
-[connection signal="animation_finished" from="Camera2D/InitialPan" to="." method="_on_InitialPan_animation_finished"]
 [node name="CubesMovingCheck" type="Timer" parent="."]
-wait_time = 3.0
 autostart = true
 
+[connection signal="animation_finished" from="Camera2D/InitialPan" to="." method="_on_InitialPan_animation_finished"]
 [connection signal="gui_input" from="PlayBtn" to="." method="_on_PlayBtn_gui_input"]
 [connection signal="timeout" from="CubesMovingCheck" to="." method="_on_CubesMovingCheck_timeout"]

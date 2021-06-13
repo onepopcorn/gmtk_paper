@@ -33,6 +33,9 @@ func _ready():
 	# Keep track of initial position
 	init_position = Vector2(position)
 
+	dragging = false
+	is_valid_position = false
+
 func _process(_delta):
 	if dragging:
 		global_transform.origin = get_global_mouse_position()
@@ -122,4 +125,6 @@ func freeze():
 	linear_velocity = Vector2.ZERO
 	angular_velocity = 0
 	emit_signal("cube_frozen", self)
+
+
 

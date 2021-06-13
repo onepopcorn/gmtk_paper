@@ -48,6 +48,7 @@ func _on_cube_destroyed(node):
 	if cam.get_parent() == node:
 		node.remove_from_group('Cubes')
 		node.queue_free()
+		get_tree().get_root().remove_child(node)
 		update_camera_follow()
 		
 func _on_cube_frozen(node):
@@ -117,12 +118,11 @@ func has_player_won():
 	return true
 
 func finish_game():
-	print("Game finished")
 	$CubesMovingCheck.stop()
 	if has_player_won():
-		print("player won")
+		$FinalMessage.display_win()
 	else:
-		print("player lost")
+		$FinalMessage.display_lose()
 
 
 func _on_CubesMovingCheck_timeout():
@@ -134,8 +134,31 @@ func _on_CubesMovingCheck_timeout():
 	for cube in cubes:
 		current_game_state += cube.position
 		
-	if (last_game_state - current_game_state).length_squared() < 1:
+	if (last_game_state - current_game_state).length_squared() < 10:
 		finish_game()
 		return
 
 	last_game_state = current_game_state
+
+func replay():
+	game_started = false
+	game_finished = false
+
+	
+	Globals.is_playing = false
+	get_node("/root/Main/DropZone").visible = true
+	get_node("/root/Main/PlayBtn").visible = true
+
+	for cube in get_tree().get_nodes_in_group("Cubes"):
+		cube.destroy()
+
+	for target in get_node("Field/Targets").get_children():
+		target.correct_match = false
+	
+	
+	var cam_parent = cam.get_parent()
+	if cam_parent:
+		cam_parent.remove_child(cam)
+	
+	add_child(cam)
+	get_tree().reload_current_scene()

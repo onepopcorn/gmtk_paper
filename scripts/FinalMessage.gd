@@ -1,12 +1,19 @@
 extends Node2D
 
 
-onready var loose = $Loose
+# There is a typo
+onready var lose = $Loose
 onready var win = $Win
 
-func show_message(win):
-	if win:
-		win.visible = true
-	else:
-		win.visible = false
+func display_win():
+	visible = true
+	win.visible = true
+
+func display_lose():
+	lose.visible = true
+	visible = true
+
+
+func _on_TextureButton_pressed():
 	
+	get_node("/root/Main").replay()
