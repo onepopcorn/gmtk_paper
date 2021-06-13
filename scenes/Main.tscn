@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scenes/Bg.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/Main.gd" type="Script" id=2]
@@ -11,7 +11,6 @@
 [ext_resource path="res://scenes/Obstacles/Laser.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/Obstacles/Impulser.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/Obstacles/Stop.tscn" type="PackedScene" id=11]
-[ext_resource path="res://scenes/Obstacles/Weight.tscn" type="PackedScene" id=12]
 
 [sub_resource type="Animation" id=4]
 resource_name = "VerticalPan"
@@ -132,20 +131,29 @@ color = 1
 "obstacles",
 ] instance=ExtResource( 8 )]
 position = Vector2( 322.861, 483.39 )
-rotation = -0.58294
+rotation = 0.352557
 collision_mask = 0
 color = 1
 
 [node name="Laser" parent="Field/Obstacles" groups=[
 "obstacles",
 ] instance=ExtResource( 9 )]
-position = Vector2( 598.299, 498.92 )
+position = Vector2( 551.972, 695.809 )
 
 [node name="Impulser" parent="Field/Obstacles" groups=[
 "obstacles",
 ] instance=ExtResource( 10 )]
-position = Vector2( 646.979, 358.815 )
-rotation = -0.174533
+position = Vector2( 838.969, 691.341 )
+rotation = 1.58825
+collision_layer = 2
+collision_mask = 0
+color = 1
+
+[node name="Impulser2" parent="Field/Obstacles" groups=[
+"obstacles",
+] instance=ExtResource( 10 )]
+position = Vector2( 790.248, 691.341 )
+rotation = -1.5708
 collision_layer = 2
 collision_mask = 0
 color = 1
@@ -153,9 +161,6 @@ color = 1
 [node name="Stop" parent="Field/Obstacles" instance=ExtResource( 11 )]
 position = Vector2( 694.809, 355.697 )
 color = 1
-
-[node name="Weight" parent="Field/Obstacles" instance=ExtResource( 12 )]
-position = Vector2( 118.715, 308.733 )
 
 [node name="PlayBtn" type="TextureButton" parent="."]
 margin_left = 338.5
