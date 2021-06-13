@@ -12,7 +12,8 @@ func _ready():
 		var num = Globals.shapes[shape]
 		for i in range(0, num):
 			var cube = Cube.instance()
-			cube.color = Globals.colors[randi() % Globals.colors.size()]
+			# cube.color = Globals.colors[randi() % Globals.colors.size()]
+			cube.color = Globals.colors[0]
 			cube.position.y = last_y * cube.tile_size
 			last_y += 1
 			

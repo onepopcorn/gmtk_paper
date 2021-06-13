@@ -47,23 +47,27 @@ collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Field/Floor"]
 shape = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Sprite" type="Sprite" parent="Field/Floor"]
 scale = Vector2( 4.07038, 1 )
 texture = ExtResource( 6 )
 
 [node name="Target" parent="Field" instance=ExtResource( 7 )]
-position = Vector2( 316.268, 1787.04 )
+position = Vector2( 269.675, 1788.33 )
 color = 3
 
 [node name="Target2" parent="Field" instance=ExtResource( 7 )]
-position = Vector2( 364.233, 1787.31 )
+position = Vector2( 317.64, 1788.61 )
 shape = 1
-color = 1
+color = 2
 
 [node name="Target3" parent="Field" instance=ExtResource( 7 )]
-position = Vector2( 412.374, 1787.31 )
-color = 2
+position = Vector2( 365.781, 1788.61 )
+shape = 2
+color = 1
 
 [node name="PlayBtn" type="TextureButton" parent="."]
 margin_left = 338.5

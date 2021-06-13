@@ -5,14 +5,8 @@ signal joinCubesStop(node)
 
 export (Color) var color = Color(0,0,0)
 
-enum STATE {
-	EDIT,
-	GAME
-}
-
 var tile_size = 48
 var dragging = false
-var state = STATE.EDIT
 var is_valid_position = false
 var init_position
 
@@ -111,3 +105,4 @@ func getSnappedPosition(pos: Vector2) -> Vector2:
 	# Calculate position through tile number
 	var tileNum = (pos / tile_size).floor()
 	return tileNum * tile_size + Vector2.ONE * tile_size / 2
+

@@ -25,10 +25,10 @@ enum Shapes {
 }
 
 var shapes = {
-	"square": 1,
-	"circle": 0,
-	"triangle": 0,
-	"star": 0
+	"square": 2,
+	"circle": 1,
+	"triangle": 2,
+	"star": 1
 }
 
 var n_cubes = shapes["square"] + shapes["circle"] + shapes["triangle"] + shapes["star"]
