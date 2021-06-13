@@ -134,7 +134,7 @@ func _on_CubesMovingCheck_timeout():
 	for cube in cubes:
 		current_game_state += cube.position
 		
-	if (last_game_state - current_game_state).length_squared() < 0.1:
+	if (last_game_state - current_game_state).length_squared() < 1:
 		finish_game()
 		return
 
