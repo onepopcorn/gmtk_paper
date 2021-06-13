@@ -3,6 +3,13 @@ extends Node
 var is_dragging: = false
 var is_playing : = false
 
+enum Colors {
+	Red,
+	Blue,
+	Green,
+	Purple
+}
+
 var colors = [
 	'e82222',
 	'261bed',
@@ -10,10 +17,17 @@ var colors = [
 	'b719d3'
 ]
 
+enum Shapes {
+	square,
+	circle,
+	triangle,
+	star
+}
+
 var shapes = {
-	"square": 0,
+	"square": 1,
 	"circle": 0,
-	"triangle": 1,
+	"triangle": 0,
 	"star": 0
 }
 

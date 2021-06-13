@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/obstacles_atlas.png-c3cba9013e33db19e1d14f889aa57b72.stex"
+path="res://.import/targets_atlas.png-b8507526d7024a6aa5e5360df9a0d907.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/obstacles_atlas.png"
-dest_files=[ "res://.import/obstacles_atlas.png-c3cba9013e33db19e1d14f889aa57b72.stex" ]
+source_file="res://assets/targets_atlas.png"
+dest_files=[ "res://.import/targets_atlas.png-b8507526d7024a6aa5e5360df9a0d907.stex" ]
 
 [params]
 
