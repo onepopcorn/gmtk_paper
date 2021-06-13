@@ -50,14 +50,6 @@ drag_margin_v_enabled = true
 
 [node name="Field" type="Node2D" parent="."]
 
-[node name="Slide" parent="Field" groups=[
-"obstacles",
-] instance=ExtResource( 8 )]
-position = Vector2( 322.861, 483.39 )
-rotation = -0.58294
-collision_mask = 0
-color = 1
-
 [node name="Floor" type="StaticBody2D" parent="Field"]
 position = Vector2( 430, 1835 )
 collision_layer = 8
@@ -74,20 +66,6 @@ rotation = 0.00174533
 scale = Vector2( 4.07038, 1 )
 texture = ExtResource( 6 )
 
-[node name="Target" parent="Field" instance=ExtResource( 7 )]
-position = Vector2( 265.675, 1788.33 )
-color = 3
-
-[node name="Target2" parent="Field" instance=ExtResource( 7 )]
-position = Vector2( 313.64, 1788.61 )
-shape = 1
-color = 2
-
-[node name="Target3" parent="Field" instance=ExtResource( 7 )]
-position = Vector2( 361.781, 1788.61 )
-shape = 2
-color = 1
-
 [node name="wall_left" type="StaticBody2D" parent="Field"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Field/wall_left"]
@@ -100,12 +78,51 @@ shape = SubResource( 2 )
 position = Vector2( 1039.37, 918.068 )
 shape = SubResource( 2 )
 
-[node name="Laser" parent="Field" groups=[
+[node name="Targets" type="Node2D" parent="Field"]
+position = Vector2( 47.6008, 1.52417 )
+
+[node name="Target" parent="Field/Targets" instance=ExtResource( 7 )]
+position = Vector2( 265.675, 1788.33 )
+color = 3
+
+[node name="Target2" parent="Field/Targets" instance=ExtResource( 7 )]
+position = Vector2( 313.64, 1788.61 )
+shape = 1
+color = 2
+
+[node name="Target3" parent="Field/Targets" instance=ExtResource( 7 )]
+position = Vector2( 361.781, 1788.61 )
+shape = 2
+color = 1
+
+[node name="Target4" parent="Field/Targets" instance=ExtResource( 7 )]
+position = Vector2( 314.213, 1741.34 )
+
+[node name="Target5" parent="Field/Targets" instance=ExtResource( 7 )]
+position = Vector2( 362.078, 1740.74 )
+color = 2
+
+[node name="Target6" parent="Field/Targets" instance=ExtResource( 7 )]
+position = Vector2( 409.647, 1787.12 )
+shape = 2
+color = 1
+
+[node name="Obstacles" type="Node2D" parent="Field"]
+
+[node name="Slide" parent="Field/Obstacles" groups=[
+"obstacles",
+] instance=ExtResource( 8 )]
+position = Vector2( 322.861, 483.39 )
+rotation = -0.58294
+collision_mask = 0
+color = 1
+
+[node name="Laser" parent="Field/Obstacles" groups=[
 "obstacles",
 ] instance=ExtResource( 9 )]
 position = Vector2( 598.299, 498.92 )
 
-[node name="Impulser" parent="Field" groups=[
+[node name="Impulser" parent="Field/Obstacles" groups=[
 "obstacles",
 ] instance=ExtResource( 10 )]
 position = Vector2( 646.979, 358.815 )
@@ -114,12 +131,12 @@ collision_layer = 2
 collision_mask = 0
 color = 1
 
-[node name="Stop" parent="Field" instance=ExtResource( 11 )]
-position = Vector2( 553.959, 355.067 )
-color = 2
+[node name="Stop" parent="Field/Obstacles" instance=ExtResource( 11 )]
+position = Vector2( 694.809, 355.697 )
+color = 1
 
-[node name="Weight" parent="Field" instance=ExtResource( 12 )]
-position = Vector2( 264.866, 309.363 )
+[node name="Weight" parent="Field/Obstacles" instance=ExtResource( 12 )]
+position = Vector2( 118.715, 308.733 )
 
 [node name="PlayBtn" type="TextureButton" parent="."]
 margin_left = 338.5

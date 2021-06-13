@@ -2,7 +2,7 @@ extends Area2D
 
 export (Globals.Colors) var color = 0
 
-onready var sprite = $Sprite
+onready var sprite = $AnimatedSprite
 
 func _ready():
 	sprite.modulate = Globals.colors[color]
